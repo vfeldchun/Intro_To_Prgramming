@@ -14,33 +14,26 @@ if (number <= 0)
 }
 else
 {
-    while (true)
+    // Если у числа один разряд
+    if (number < 10)
     {
-        // Если у числа один разряд
-        if (number / 10 == 0 && isFirstDigit)
+        result_string = $"{number}";
+    }
+    else 
+    {
+        while (number > 0)
         {
-            result_string = $"{number % 10}";
-            break;
-        }
-        
-        // Если у числа более 1-го разряда и это первый остаток от деления
-        if (number / 10 != 0 && isFirstDigit)
-        {
-            result_string = $"{number % 10}";
-            isFirstDigit = false;
+            // Если у числа более 1-го разряда и это первый остаток от деления
+            if (number / 10 != 0 && isFirstDigit)
+            {
+                result_string = $"{number % 10}";
+                isFirstDigit = false;
+            }
+            else
+            {
+                result_string = $"{number % 10}, " + result_string;
+            }
             number /= 10;
-        }
-        // Если у числа более 1-го разряда и это непервый остаток от деления
-        else if (number / 10 != 0 && !isFirstDigit)
-        {
-            result_string = $"{number % 10}, " + result_string;
-            number /= 10;
-        }
-        // если это последний остаток от деления в числе
-        else 
-        {
-            result_string = $"{number % 10}, " + result_string;
-            break;
         }
     }
 
